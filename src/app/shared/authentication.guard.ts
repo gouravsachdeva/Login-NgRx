@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Store } from "@ngrx/store";
 import * as RouterAction from './route-actions';
 
+import { Router } from '@angular/router'
+
 import { isAuthenticated, State } from "../reducers/index";
 
 @Injectable({
@@ -24,7 +26,7 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
       }
     });
 
-    return false;
+    return observable;
   }
 
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
@@ -35,7 +37,7 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
       }
     });
 
-    return false;
+    return observable;
   }
 
 }

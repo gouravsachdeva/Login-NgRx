@@ -7,6 +7,8 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
+import { tap, switchMap, catchError, map } from 'rxjs/operators'
+import { Router } from '@angular/router'
 
 import { UserService } from "./core/services/user.service";
 
@@ -24,17 +26,19 @@ import {
 @Injectable()
 export class UserLoginEffects {
   constructor(private actions$: Actions,
-    private userService: UserService) { }
+    private userService: UserService,
+    private router: Router) { }
 
   @Effect()
   public authenticate: Observable<Action> = this.actions$.pipe(
-    ofType(UserLoginActionTypes.AUTHENTICATE))
-    .debounceTime(500)
-    .switchMap((payload: any) => {
-      return this.userService.authenticate(payload.payload.email, payload.payload.password)
-        .map(user => new AuthenticationSuccessAction({ user: user }))
-        .catch(error => of(new AuthenticationErrorAction({ error: error })));
-    });
+    ofType(UserLoginActionTypes.AUTHENTICATE),
+    // .debounceTime(500)
+    switchMap((payload: any) => {
+      return this.userService.authenticate(payload.payload.email, payload.payload.password).pipe(
+        map(user => new AuthenticationSuccessAction({ user: user })),
+        tap(() => this.router.navigate(['/home'])),
+        catchError(error => of(new AuthenticationErrorAction({ error: error }))))
+    }));
 
   @Effect()
   public authenticated: Observable<Action> = this.actions$.pipe
