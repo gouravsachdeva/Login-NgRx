@@ -5,7 +5,7 @@ import { Store } from "@ngrx/store";
 import * as RouterAction from '../shared/route-actions';
 
 // rxjs
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/takeWhile";
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnDestroy, OnInit {
     this.store.select(isAuthenticated)
       .takeWhile(() => this.alive)
       .subscribe(value => {
-        this.store.dispatch(new RouterAction.Go({ path: ["/home"] }));
+        this.store.dispatch(new RouterAction.Go({ path: "/home" }));
       });
   }
 
@@ -82,7 +82,7 @@ export class LoginComponent implements OnDestroy, OnInit {
   }
 
   public home() {
-    this.store.dispatch(new RouterAction.Go({ path: ["/"] }));
+    this.store.dispatch(new RouterAction.Go({ path: "/" }));
   }
 
 }

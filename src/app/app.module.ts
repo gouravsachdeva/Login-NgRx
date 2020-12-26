@@ -10,7 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { StoreModule } from '@ngrx/store';
 import { reducer, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment'; import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 
 import { UserService } from './core/services/user.service';
 import { AuthenticationGuard } from './shared/authentication.guard';
@@ -35,6 +35,7 @@ import { MatIconModule } from "@angular/material/icon"
     MatMenuModule,
     MatIconModule,
     StoreModule.forRoot(reducer),
+    StoreRouterConnectingModule.forRoot(),
     // !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([UserLoginEffects])
   ],

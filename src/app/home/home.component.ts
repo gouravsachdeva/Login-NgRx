@@ -25,6 +25,6 @@ export class HomeComponent implements OnInit {
     this.user = this.store.select(getAuthenticatedUser) || {};
   }
   public signOut() {
-    this.store.dispatch(new RouterAction.Go({ path: ["/"] }));
+    this.store.dispatch(new RouterAction.Go({ path: "/" }));
   }
 }

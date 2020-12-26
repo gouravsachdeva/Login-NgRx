@@ -20,7 +20,7 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
     // redirect to sign in page if user is not authenticated
     observable.subscribe(authenticated => {
       if (!authenticated) {
-        this.store.dispatch(new RouterAction.Go({ path: ["/"] }));
+        this.store.dispatch(new RouterAction.Go({ path: "/" }));
       }
     });
 
@@ -31,7 +31,7 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
     const observable = this.store.select(isAuthenticated);
     observable.subscribe(authenticated => {
       if (!authenticated) {
-        this.store.dispatch(new RouterAction.Go({ path: ["/"] }));
+        this.store.dispatch(new RouterAction.Go({ path: "/" }));
       }
     });
 

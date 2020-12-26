@@ -10,11 +10,11 @@ export class Go implements Action {
 
   constructor(
     public payload: {
-      path: any[];
+      path: string | any[];
       query?: object;
       extras?: NavigationExtras;
     }
-  ) {}
+  ) { }
 }
 
 export class Back implements Action {
