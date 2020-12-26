@@ -12,7 +12,8 @@ import { isAuthenticated, State } from "../reducers/index";
   providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivate, CanLoad {
-  constructor(private store: Store<State>) { }
+  constructor(private store: Store<State>,
+    private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -22,7 +23,8 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
     // redirect to sign in page if user is not authenticated
     observable.subscribe(authenticated => {
       if (!authenticated) {
-        this.store.dispatch(new RouterAction.Go({ path: "/" }));
+        // this.store.dispatch(new RouterAction.Go({ path: "/" }));
+        this.router.navigate(['/']);
       }
     });
 
@@ -33,7 +35,8 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
     const observable = this.store.select(isAuthenticated);
     observable.subscribe(authenticated => {
       if (!authenticated) {
-        this.store.dispatch(new RouterAction.Go({ path: "/" }));
+        // this.store.dispatch(new RouterAction.Go({ path: "/" }));
+        this.router.navigate(['/']);
       }
     });
 

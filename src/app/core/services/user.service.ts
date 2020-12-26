@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, of, throwError } from "rxjs";
 import { User } from "../models/user";
+// var moment = require('moment/moment');
 
 export const TEST_USER = new User();
 TEST_USER._id = "1";
@@ -8,6 +9,7 @@ TEST_USER.email = "test@domain.com";
 TEST_USER.firstName = "Test";
 TEST_USER.lastName = "Domain";
 TEST_USER.password = "Test@123";
+TEST_USER.date = new Date();
 
 @Injectable()
 export class UserService {
