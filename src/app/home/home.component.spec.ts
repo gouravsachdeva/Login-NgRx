@@ -2,10 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 
-import { Store } from "@ngrx/store";
+import { Store, StateObservable , ActionsSubject,ReducerManager,ReducerManagerDispatcher} from "@ngrx/store";
 import * as RouterAction from '../shared/route-actions';
 
-import { Observable } from "rxjs";
 import {
   getAuthenticatedUser,
   State
@@ -20,8 +19,9 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       providers: [
-        { provide: Store, useClass: Store },
-       //{ provide: Observable, useClass: Observable }
+
+       Store, StateObservable,ActionsSubject,ReducerManager,ReducerManagerDispatcher
+       
         ]
     })
     .compileComponents();
