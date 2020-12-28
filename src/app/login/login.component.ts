@@ -10,7 +10,7 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/takeWhile";
 
 // actions
-import { AuthenticateAction } from "../user-login.actions";
+import { AuthenticateAction } from "../state/actions/user-login.actions";
 
 // reducers
 import {

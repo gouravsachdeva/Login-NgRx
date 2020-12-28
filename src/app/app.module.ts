@@ -15,7 +15,7 @@ import { environment } from '../environments/environment'; import { StoreRouterC
 import { UserService } from './core/services/user.service';
 import { AuthenticationGuard } from './shared/authentication.guard';
 import { EffectsModule } from '@ngrx/effects';
-import { UserLoginEffects } from './user-login.effects';
+import { UserLoginEffects } from './state/effects/user-login.effects';
 import { MatCardModule } from "@angular/material/card"
 import { MatMenuModule } from "@angular/material/menu"
 import { MatIconModule } from "@angular/material/icon"

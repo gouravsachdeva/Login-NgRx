@@ -1,5 +1,5 @@
-import { UserLoginActions, UserLoginActionTypes } from './user-login.actions';
-import { User } from './core/models/user'
+import { UserLoginActions, UserLoginActionTypes } from '../actions/user-login.actions';
+import { User } from '../../core/models/user'
 
 export const userLoginFeatureKey = 'userLogin';
 

@@ -3,7 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { UserLoginEffects } from './user-login.effects';
-import { UserService } from "./core/services/user.service";
+import { UserService } from "../../core/services/user.service";
 
 describe('UserLoginEffects', () => {
   let actions$: Observable<any>;

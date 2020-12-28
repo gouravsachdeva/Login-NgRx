@@ -10,7 +10,7 @@ import "rxjs/add/operator/switchMap";
 import { tap, switchMap, catchError, map } from 'rxjs/operators'
 import { Router } from '@angular/router'
 
-import { UserService } from "./core/services/user.service";
+import { UserService } from "../../core/services/user.service";
 
 import {
   UserLoginActionTypes,
@@ -20,7 +20,7 @@ import {
   AuthenticationSuccessAction,
   SignOutErrorAction,
   SignOutSuccessAction
-} from "./user-login.actions";
+} from "../actions/user-login.actions";
 
 
 @Injectable()
