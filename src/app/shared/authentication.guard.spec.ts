@@ -6,14 +6,14 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanL
 import { Store } from "@ngrx/store";
 import * as RouterAction from './route-actions';
 
-import { isAuthenticated, State } from "../reducers/index";
+import { isAuthenticated, State } from "../state/reducers/root-reducers";
 
 describe('AuthenticationGuard', () => {
   let guard: AuthenticationGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers:[Store]
+      providers: [Store]
     });
     guard = TestBed.inject(AuthenticationGuard);
   });

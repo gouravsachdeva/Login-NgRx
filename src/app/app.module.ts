@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StoreModule } from '@ngrx/store';
-import { reducer, metaReducers } from './reducers';
+import { reducer, metaReducers } from './state/reducers/root-reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 

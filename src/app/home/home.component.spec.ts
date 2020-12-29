@@ -8,7 +8,7 @@ import * as RouterAction from '../shared/route-actions';
 import {
   getAuthenticatedUser,
   State
-} from "../reducers";
+} from "../state/reducers/root-reducers";
 
 import { User } from "../core/models/user";
 describe('HomeComponent', () => {

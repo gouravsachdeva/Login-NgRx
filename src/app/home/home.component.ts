@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 import {
   getAuthenticatedUser,
   State
-} from "../reducers";
+} from "../state/reducers/root-reducers";
 
 // models
 import { User } from "../core/models/user";

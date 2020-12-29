@@ -6,7 +6,7 @@ import * as RouterAction from './route-actions';
 
 import { Router } from '@angular/router'
 
-import { isAuthenticated, State } from "../reducers/index";
+import { isAuthenticated, State } from "../state/reducers/root-reducers";
 
 @Injectable({
   providedIn: 'root'

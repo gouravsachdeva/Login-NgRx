@@ -18,7 +18,7 @@ import {
   isAuthenticated,
   isAuthenticationLoading,
   State
-} from "../reducers";
+} from "../state/reducers/root-reducers";
 
 @Component({
   selector: 'app-login',

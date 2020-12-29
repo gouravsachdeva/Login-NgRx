@@ -1,6 +1,6 @@
 import { createSelector, MetaReducer } from '@ngrx/store';
-import { environment } from '../../environments/environment';
-import * as fromUserLogin from '../state/reducers/user-login.reducer';
+import { environment } from '../../../../environments/environment';
+import * as fromUserLogin from '../user-login.reducer';
 
 export interface State {
   [fromUserLogin.userLoginFeatureKey]: fromUserLogin.State;
