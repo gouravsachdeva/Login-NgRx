@@ -1,49 +1,100 @@
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserModule, By } from '@angular/platform-browser';
 import { LoginComponent } from './login.component';
-
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { Store } from "@ngrx/store";
-import * as RouterAction from '../shared/route-actions';
-
-// rxjs
-import { Observable } from "rxjs";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Store, StoreModule } from '@ngrx/store';
+import { User } from '../core/models/user';
+import { TEST_USER } from '../core/services/user.service';
+import { reducer } from '../state/reducers/root-reducers'
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/takeWhile";
-
-// actions
-import { AuthenticateAction } from "../state/actions/user-login.actions";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let loginForm: FormGroup;
+  let de: DebugElement;
+  let el: HTMLElement;
+  let page: Page;
+  let user: User = new User();
 
-  // loginForm = new FormBuilder.group({
-  //   email: ['', [Validators.required, Validators.email]],
-  //   password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
-  // });
+  beforeEach(() => {
+    user = TEST_USER;
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [LoginComponent],
+      imports: [BrowserModule, FormsModule, ReactiveFormsModule, StoreModule.forRoot(reducer)],
       providers: [
-      { provide: Store, useClass: Store },
-      //{ provide: Observable, useClass: Observable },
-      FormBuilder
+        { provide: Store, useClass: Store },
+        FormBuilder
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
       ]
     })
-    .compileComponents();
+      .compileComponents();
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('form'));
+    el = de.nativeElement;
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    page = new Page(component, fixture);
+    fixture.whenStable().then(() => {
+      page.addPageElements();
+    });
+    // fixture = TestBed.createComponent(LoginComponent);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it(`should have as text 'User Login'`, () => {
+    expect(component.title).toEqual('User Login');
+  });
+
+  it(`should have as boolean 'false'`, () => {
+    expect(component.submitted).toEqual(false);
+  });
+
+  it("should create a FormGroup comprised of FormControls", () => {
+    fixture.detectChanges();
+    expect(component.loginForm instanceof FormGroup).toBe(true);
+  });
+
+  it("should authenticate", () => {
+    fixture.detectChanges();
+
+    component.loginForm.controls["email"].setValue(user.email);
+    component.loginForm.controls["password"].setValue(user.password);
+
+    component.onSubmit();
+
+    expect(page.navigateSpy.calls.any()).toBe(true, "Store.dispatch not invoked");
+  });
+
 });
+class Page {
+
+  public emailInput: HTMLInputElement;
+  public navigateSpy: jasmine.Spy;
+  public passwordInput: HTMLInputElement;
+
+  constructor(private component: LoginComponent, private fixture: ComponentFixture<LoginComponent>) {
+    const injector = fixture.debugElement.injector;
+    const store = injector.get(Store);
+
+    this.navigateSpy = spyOn(store, "dispatch");
+  }
+
+  public addPageElements() {
+    const emailInputSelector = "input[formcontrolname=\"email\"]";
+    this.emailInput = this.fixture.debugElement.query(By.css(emailInputSelector)).nativeElement;
+
+    const passwordInputSelector = "input[formcontrolname=\"password\"]";
+    this.passwordInput = this.fixture.debugElement.query(By.css(passwordInputSelector)).nativeElement;
+  }
+}

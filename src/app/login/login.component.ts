@@ -16,7 +16,6 @@ import { AuthenticateAction } from "../state/actions/user-login.actions";
 import {
   getAuthenticationError,
   isAuthenticated,
-  isAuthenticationLoading,
   State
 } from "../state/reducers/root-reducers";
 
@@ -26,6 +25,7 @@ import {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnDestroy, OnInit {
+  title = "User Login";
   loginForm: FormGroup;
   submitted: boolean = false;
   public error: Observable<string | any>;

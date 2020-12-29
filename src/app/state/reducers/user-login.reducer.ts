@@ -77,10 +77,3 @@ export function reducer(state = initialState, action: UserLoginActions): State {
       return state;
   }
 }
-
-// export const isAuthenticated = (state: State) => state.authenticated;
-// export const isAuthenticatedLoaded = (state: State) => state.loaded;
-// export const getAuthenticatedUser = (state: State) => state.user;
-// export const getAuthenticationError = (state: State) => state.error;
-// export const isLoading = (state: State) => state.loading;
-// export const getSignOutError = (state: State) => state.error;
