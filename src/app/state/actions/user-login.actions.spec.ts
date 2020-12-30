@@ -29,3 +29,23 @@ describe('AuthenticatedErrorAction', () => {
     expect(UserLoginActions.AuthenticatedErrorAction).toBeTruthy();
   });
 });
+
+describe('AuthenticationErrorAction', () => {
+  it('should create an instance', () => {
+    expect(UserLoginActions.AuthenticationErrorAction).toBeTruthy();
+  });
+});
+
+describe('AuthenticationSuccessAction', () => {
+  it('should create an instance', () => {
+    expect(UserLoginActions.AuthenticationSuccessAction).toBeTruthy();
+  });
+});
+
+describe("UserLogin actions", () => {
+  it('shold create an action', () => {
+    const action = new UserLoginActions.AuthenticateAction({ email: "test@domain.com", password: "Test@123" });
+
+    expect(action.type).toEqual("[UserLogin] Authenticate");
+  })
+})

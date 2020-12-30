@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from "@ngrx/store";
 import { Observable, of } from "rxjs";
-// import "rxjs/add/observable/of";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/map";
@@ -17,9 +16,7 @@ import {
   AuthenticatedErrorAction,
   AuthenticatedSuccessAction,
   AuthenticationErrorAction,
-  AuthenticationSuccessAction,
-  SignOutErrorAction,
-  SignOutSuccessAction
+  AuthenticationSuccessAction
 } from "../actions/user-login.actions";
 
 
@@ -47,15 +44,6 @@ export class UserLoginEffects {
       return this.userService.authenticatedUser()
         .map(user => new AuthenticatedSuccessAction({ authenticated: (user && user !== null), user: user }))
         .catch(error => of(new AuthenticatedErrorAction({ error: error })));
-    });
-
-  @Effect()
-  public signOut: Observable<Action> = this.actions$.pipe(
-    ofType(UserLoginActionTypes.SIGN_OUT))
-    .switchMap(payload => {
-      return this.userService.signout()
-        .map(value => new SignOutSuccessAction())
-        .catch(error => of(new SignOutErrorAction({ error: error })));
     });
 
 }

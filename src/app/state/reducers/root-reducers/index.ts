@@ -16,6 +16,6 @@ export const getAuthenticationError = createSelector(getUsersState, state => sta
 export const isAuthenticated = createSelector(getUsersState, state => state.authenticated);
 export const isAuthenticatedLoaded = createSelector(getUsersState, state => state.loaded);
 export const isAuthenticationLoading = createSelector(getUsersState, state => state.loading);
-export const getSignOutError = createSelector(getUsersState, state => state.error);
+// export const getSignOutError = createSelector(getUsersState, state => state.error);
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];

@@ -7,10 +7,7 @@ export enum UserLoginActionTypes {
   AUTHENTICATE_SUCCESS = "[UserLogin] Authentication success",
   AUTHENTICATED = "[UserLogin] Authenticated",
   AUTHENTICATED_ERROR = "[UserLogin] Authenticated error",
-  AUTHENTICATED_SUCCESS = "[UserLogin] Authenticated success",
-  SIGN_OUT = "[UserLogin] Sign off",
-  SIGN_OUT_ERROR = "[UserLogin] Sign off error",
-  SIGN_OUT_SUCCESS = '[UserLogin] Sign off success'
+  AUTHENTICATED_SUCCESS = "[UserLogin] Authenticated success"
 }
 
 export class AuthenticateAction implements Action {
@@ -49,29 +46,11 @@ export class AuthenticationSuccessAction implements Action {
   constructor(public payload: { user: User }) { }
 }
 
-export class SignOutAction implements Action {
-  public type: string = UserLoginActionTypes.SIGN_OUT;
-  constructor(public payload?: any) { }
-}
-
-export class SignOutErrorAction implements Action {
-  public type: string = UserLoginActionTypes.SIGN_OUT_SUCCESS;
-  constructor(public payload?: any) { }
-}
-
-export class SignOutSuccessAction implements Action {
-  public type: string = UserLoginActionTypes.SIGN_OUT_SUCCESS;
-  constructor(public payload?: any) { }
-}
-
 
 export type UserLoginActions = AuthenticateAction
   | AuthenticatedAction
   | AuthenticatedErrorAction
   | AuthenticatedSuccessAction
   | AuthenticationErrorAction
-  | AuthenticationSuccessAction
-  | SignOutAction
-  | SignOutErrorAction
-  | SignOutSuccessAction;
+  | AuthenticationSuccessAction;
 

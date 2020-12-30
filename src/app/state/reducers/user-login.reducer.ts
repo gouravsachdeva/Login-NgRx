@@ -59,20 +59,6 @@ export function reducer(state = initialState, action: UserLoginActions): State {
         user: user
       });
 
-    case UserLoginActionTypes.SIGN_OUT_ERROR:
-      return Object.assign({}, state, {
-        authenticated: true,
-        error: action.payload.error.message,
-        user: {}
-      });
-
-    case UserLoginActionTypes.SIGN_OUT_SUCCESS:
-      return Object.assign({}, state, {
-        authenticated: false,
-        error: undefined,
-        user: {}
-      });
-
     default:
       return state;
   }

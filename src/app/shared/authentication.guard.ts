@@ -16,8 +16,8 @@ export class AuthenticationGuard implements CanActivate, CanLoad {
     private router: Router) { }
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    route?: ActivatedRouteSnapshot,
+    state?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const observable = this.store.select(isAuthenticated);
 
     // redirect to sign in page if user is not authenticated

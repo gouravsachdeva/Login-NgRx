@@ -76,6 +76,18 @@ describe('LoginComponent', () => {
     expect(page.navigateSpy.calls.any()).toBe(true, "Store.dispatch not invoked");
   });
 
+  it('email field validity', () => {
+    fixture.detectChanges();
+    const email = component.loginForm.controls["email"];
+    expect(email.valid).toBeFalsy();
+
+    email.setValue('');
+    expect(email.hasError('required')).toBeTruthy();
+
+    email.setValue("test");
+    expect(email.hasError('required')).toBeFalsy();
+    expect(email.hasError('email')).toBeTruthy();
+  });
 });
 class Page {
 
