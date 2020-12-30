@@ -63,7 +63,7 @@ describe('UserLogin Reducer', () => {
   })
 
   describe('AUTHENTICATED_SUCCESS action', () => {
-    it('should return some error', () => {
+    it('should return user', () => {
       const action = new UserLoginActions.AuthenticatedSuccessAction({ authenticated: true, user });
       const state = reducer(initialState, action);
       expect(state.authenticated).toEqual(true);
@@ -73,7 +73,7 @@ describe('UserLogin Reducer', () => {
   })
 
   describe('AUTHENTICATE_SUCCESS action', () => {
-    it('should return some error', () => {
+    it('should return user', () => {
       const action = new UserLoginActions.AuthenticationSuccessAction({ user });
       const state = reducer(initialState, action);
       expect(state.authenticated).toEqual(true);
