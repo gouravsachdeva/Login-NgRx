@@ -42,15 +42,25 @@ describe('UserLogin Reducer', () => {
     });
   })
 
-  // describe('AUTHENTICATED_ERROR action', () => {
-  //   it('should return some error', () => {
-  //     const action = new UserLoginActions.AuthenticationErrorAction();
-  //     const state = reducer(initialState, action);
-  //     expect(state.authenticated).toEqual(false);
-  //     expect(state.loaded).toEqual(true);
-  //     expect(state.error).toEqual("Invalid email or password");
-  //   });
-  // })
+  describe('AUTHENTICATE_ERROR action', () => {
+    it('should return some error', () => {
+      const action = new UserLoginActions.AuthenticationErrorAction();
+      const state = reducer(initialState, action);
+      expect(state.authenticated).toEqual(false);
+      expect(state.loading).toEqual(false);
+      expect(state.error).toEqual("Invalid email or password");
+    });
+  })
+
+  describe('AUTHENTICATED_ERROR action', () => {
+    it('should return some error', () => {
+      const action = new UserLoginActions.AuthenticatedErrorAction();
+      const state = reducer(initialState, action);
+      expect(state.authenticated).toEqual(false);
+      expect(state.loaded).toEqual(true);
+      expect(state.error).toEqual("Invalid email or password");
+    });
+  })
 
   describe('AUTHENTICATED_SUCCESS action', () => {
     it('should return some error', () => {

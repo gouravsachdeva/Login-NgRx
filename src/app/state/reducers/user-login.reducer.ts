@@ -28,7 +28,7 @@ export function reducer(state = initialState, action: UserLoginActions): State {
     case UserLoginActionTypes.AUTHENTICATED_ERROR:
       return Object.assign({}, state, {
         authenticated: false,
-        error: action.payload.error.message,
+        error: action?.payload?.error?.message || 'Invalid email or password',
         loaded: true
       });
 
@@ -42,7 +42,7 @@ export function reducer(state = initialState, action: UserLoginActions): State {
     case UserLoginActionTypes.AUTHENTICATE_ERROR:
       return Object.assign({}, state, {
         authenticated: false,
-        error: action.payload.error.message,
+        error: action?.payload?.error?.message || 'Invalid email or password',
         loading: false
       });
 
