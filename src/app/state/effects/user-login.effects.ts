@@ -37,13 +37,13 @@ export class UserLoginEffects {
         catchError(error => of(new AuthenticationErrorAction({ error: error }))))
     }));
 
-  @Effect()
-  public authenticated: Observable<Action> = this.actions$.pipe
-    (ofType(UserLoginActionTypes.AUTHENTICATED))
-    .switchMap(payload => {
-      return this.userService.authenticatedUser()
-        .map(user => new AuthenticatedSuccessAction({ authenticated: (user && user !== null), user: user }))
-        .catch(error => of(new AuthenticatedErrorAction({ error: error })));
-    });
+  // @Effect()
+  // public authenticated: Observable<Action> = this.actions$.pipe
+  //   (ofType(UserLoginActionTypes.AUTHENTICATED))
+  //   .switchMap(payload => {
+  //     return this.userService.authenticatedUser()
+  //       .map(user => new AuthenticatedSuccessAction({ authenticated: (user && user !== null), user: user }))
+  //       .catch(error => of(new AuthenticatedErrorAction({ error: error })));
+  //   });
 
 }
