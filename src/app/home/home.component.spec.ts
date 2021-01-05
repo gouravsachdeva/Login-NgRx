@@ -3,9 +3,14 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HomeComponent } from './home.component';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from '../state/reducers/root-reducers';
-
+import { Observable } from 'rxjs/observable';
+import 'rxjs/add/observable/of';
 import { Store, StateObservable, ActionsSubject, ReducerManager, ReducerManagerDispatcher } from '@ngrx/store';
-
+class MockCustomStore {
+  select(): any {
+    return Observable.of(false);
+  }
+}
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
@@ -17,7 +22,8 @@ describe('HomeComponent', () => {
         StoreModule.forRoot(reducer)
       ],
       providers: [
-        Store, StateObservable, ActionsSubject, ReducerManager, ReducerManagerDispatcher
+        { provide: Store, useClass: MockCustomStore },
+        StateObservable, ActionsSubject, ReducerManager, ReducerManagerDispatcher
 
       ],
       schemas: [
@@ -38,6 +44,10 @@ describe('HomeComponent', () => {
 
   it('should create an instance', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should create an instance of ngoninit', () => {
+    component.ngOnInit();
   });
 
 
