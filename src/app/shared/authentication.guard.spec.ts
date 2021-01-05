@@ -3,13 +3,13 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { AuthenticationGuard } from './authentication.guard';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanLoad, Route } from '@angular/router';
 // import { Observable } from 'rxjs';
-import { Store, StoreModule } from "@ngrx/store";
-import { reducer } from '../state/reducers/root-reducers'
+import { Store, StoreModule } from '@ngrx/store';
+import { reducer } from '../state/reducers/root-reducers';
 import * as RouterAction from './route-actions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { cold } from 'jasmine-marbles';
 
-import { isAuthenticated, State } from "../state/reducers/root-reducers";
+import { isAuthenticated, State } from '../state/reducers/root-reducers';
 
 describe('AuthenticationGuard', () => {
   let guard: AuthenticationGuard;

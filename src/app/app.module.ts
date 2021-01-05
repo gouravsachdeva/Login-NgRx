@@ -10,15 +10,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { StoreModule } from '@ngrx/store';
 import { reducer, metaReducers } from './state/reducers/root-reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment'; import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import { environment } from '../environments/environment'; import { StoreRouterConnectingModule, routerReducer, RouterState } from '@ngrx/router-store';
 
 import { UserService } from './core/services/user.service';
 import { AuthenticationGuard } from './shared/authentication.guard';
 import { EffectsModule } from '@ngrx/effects';
 import { UserLoginEffects } from './state/effects/user-login.effects';
-import { MatCardModule } from "@angular/material/card"
-import { MatMenuModule } from "@angular/material/menu"
-import { MatIconModule } from "@angular/material/icon"
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,12 @@ import { MatIconModule } from "@angular/material/icon"
     StoreModule.forRoot(reducer),
     StoreRouterConnectingModule.forRoot(),
     // !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([UserLoginEffects])
+    EffectsModule.forRoot([UserLoginEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      routerState: RouterState.Minimal
+    })
   ],
   providers: [
     AuthenticationGuard,

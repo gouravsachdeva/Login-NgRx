@@ -2,12 +2,12 @@ import { Action } from '@ngrx/store';
 import { User } from '../../core/models/user';
 
 export enum UserLoginActionTypes {
-  AUTHENTICATE = "[UserLogin] Authenticate",
-  AUTHENTICATE_ERROR = "[UserLogin] Authentication error",
-  AUTHENTICATE_SUCCESS = "[UserLogin] Authentication success",
-  AUTHENTICATED = "[UserLogin] Authenticated",
-  AUTHENTICATED_ERROR = "[UserLogin] Authenticated error",
-  AUTHENTICATED_SUCCESS = "[UserLogin] Authenticated success"
+  AUTHENTICATE = '[UserLogin] Authenticate',
+  AUTHENTICATE_ERROR = '[UserLogin] Authentication error',
+  AUTHENTICATE_SUCCESS = '[UserLogin] Authentication success',
+  AUTHENTICATED = '[UserLogin] Authenticated',
+  AUTHENTICATED_ERROR = '[UserLogin] Authenticated error',
+  AUTHENTICATED_SUCCESS = '[UserLogin] Authenticated success'
 }
 
 export class AuthenticateAction implements Action {
@@ -53,4 +53,3 @@ export type UserLoginActions = AuthenticateAction
   | AuthenticatedSuccessAction
   | AuthenticationErrorAction
   | AuthenticationSuccessAction;
-

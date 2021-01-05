@@ -1,23 +1,23 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Store } from "@ngrx/store";
+import { Store } from '@ngrx/store';
 import * as RouterAction from '../shared/route-actions';
 
 // rxjs
-import { Observable } from "rxjs";
-import "rxjs/add/operator/filter";
-import "rxjs/add/operator/takeWhile";
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/takeWhile';
 
 // actions
-import { AuthenticateAction } from "../state/actions/user-login.actions";
+import { AuthenticateAction } from '../state/actions/user-login.actions';
 
 // reducers
 import {
   getAuthenticationError,
   isAuthenticated,
   State
-} from "../state/reducers/root-reducers";
+} from '../state/reducers/root-reducers';
 
 @Component({
   selector: 'app-login',
@@ -25,15 +25,13 @@ import {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnDestroy, OnInit {
-  title = "User Login";
+  title = 'User Login';
   loginForm: FormGroup;
-  submitted: boolean = false;
+  submitted = false;
   public error: Observable<string | any>;
   private alive = true;
 
-  constructor(private formBuilder: FormBuilder,
-    private store: Store<State>) {
-  }
+  constructor(private formBuilder: FormBuilder, private store: Store<State>) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -46,30 +44,30 @@ export class LoginComponent implements OnDestroy, OnInit {
     this.store.select(isAuthenticated)
       .takeWhile(() => this.alive)
       .subscribe(value => {
-        this.store.dispatch(new RouterAction.Go({ path: "/home" }));
+        this.store.dispatch(new RouterAction.Go({ path: '/home' }));
       });
   }
 
-  get f() { return this.loginForm.controls; }
+  get f(): any { return this.loginForm.controls; }
 
   onSubmit(): void {
     this.submitted = true;
     if (this.loginForm.valid) {
-      const email: string = this.loginForm?.get("email")?.value;
-      const password: string = this.loginForm?.get("password")?.value;
+      const email: string = this.loginForm?.get('email')?.value;
+      const password: string = this.loginForm?.get('password')?.value;
       // trim values
       email.trim();
       password.trim();
 
       // set payload
       const payload = {
-        email: email,
-        password: password
+        email,
+        password
       };
 
       this.store.dispatch(new AuthenticateAction(payload));
     } else {
-      return
+      return;
     }
 
   }
@@ -77,12 +75,12 @@ export class LoginComponent implements OnDestroy, OnInit {
   //   this.loginForm.reset();
   // }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.alive = false;
   }
 
   // public home() {
-  //   this.store.dispatch(new RouterAction.Go({ path: "/" }));
+  //   this.store.dispatch(new RouterAction.Go({ path: '/' }));
   // }
 
 }

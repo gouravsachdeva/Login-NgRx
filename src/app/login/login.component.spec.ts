@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { LoginComponent } from './login.component';
@@ -6,14 +6,13 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { Store, StoreModule } from '@ngrx/store';
 import { User } from '../core/models/user';
 import { TEST_USER } from '../core/services/user.service';
-import { reducer } from '../state/reducers/root-reducers'
-import "rxjs/add/operator/filter";
-import "rxjs/add/operator/takeWhile";
+import { reducer } from '../state/reducers/root-reducers';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/takeWhile';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let loginForm: FormGroup;
   let de: DebugElement;
   let el: HTMLElement;
   let page: Page;
@@ -60,31 +59,31 @@ describe('LoginComponent', () => {
     expect(component.submitted).toEqual(false);
   });
 
-  it("should create a FormGroup comprised of FormControls", () => {
+  it('should create a FormGroup comprised of FormControls', () => {
     fixture.detectChanges();
     expect(component.loginForm instanceof FormGroup).toBe(true);
   });
 
-  it("should authenticate", () => {
+  it('should authenticate', () => {
     fixture.detectChanges();
 
-    component.loginForm.controls["email"].setValue(user.email);
-    component.loginForm.controls["password"].setValue(user.password);
+    component.loginForm.controls.email.setValue(user.email);
+    component.loginForm.controls.password.setValue(user.password);
 
     component.onSubmit();
 
-    expect(page.navigateSpy.calls.any()).toBe(true, "Store.dispatch not invoked");
+    expect(page.navigateSpy.calls.any()).toBe(true, 'Store.dispatch not invoked');
   });
 
   it('email field validity', () => {
     fixture.detectChanges();
-    const email = component.loginForm.controls["email"];
+    const email = component.loginForm.controls.email;
     expect(email.valid).toBeFalsy();
 
     email.setValue('');
     expect(email.hasError('required')).toBeTruthy();
 
-    email.setValue("test");
+    email.setValue('test');
     expect(email.hasError('required')).toBeFalsy();
     expect(email.hasError('email')).toBeTruthy();
   });
@@ -99,14 +98,14 @@ class Page {
     const injector = fixture.debugElement.injector;
     const store = injector.get(Store);
 
-    this.navigateSpy = spyOn(store, "dispatch");
+    this.navigateSpy = spyOn(store, 'dispatch');
   }
 
-  public addPageElements() {
-    const emailInputSelector = "input[formcontrolname=\"email\"]";
+  public addPageElements(): any {
+    const emailInputSelector = 'input[formcontrolname=\'email\']';
     this.emailInput = this.fixture.debugElement.query(By.css(emailInputSelector)).nativeElement;
 
-    const passwordInputSelector = "input[formcontrolname=\"password\"]";
+    const passwordInputSelector = 'input[formcontrolname=\'password\']';
     this.passwordInput = this.fixture.debugElement.query(By.css(passwordInputSelector)).nativeElement;
   }
 }

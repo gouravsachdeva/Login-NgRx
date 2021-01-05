@@ -34,13 +34,13 @@ describe('UserLogin Reducer', () => {
 
   describe('AUTHENTICATE action', () => {
     it('should set loading to true', () => {
-      const user = { email: "test@domain.com", password: "Test@123" }
-      const action = new UserLoginActions.AuthenticateAction(user);
+      const userData = { email: 'test@domain.com', password: 'Test@123' };
+      const action = new UserLoginActions.AuthenticateAction(userData);
       const state = reducer(initialState, action);
       expect(state.loading).toEqual(true);
       expect(state.error).toEqual(undefined);
     });
-  })
+  });
 
   describe('AUTHENTICATE_ERROR action', () => {
     it('should return some error', () => {
@@ -48,9 +48,9 @@ describe('UserLogin Reducer', () => {
       const state = reducer(initialState, action);
       expect(state.authenticated).toEqual(false);
       expect(state.loading).toEqual(false);
-      expect(state.error).toEqual("Invalid email or password");
+      expect(state.error).toEqual('Invalid email or password');
     });
-  })
+  });
 
   describe('AUTHENTICATED_ERROR action', () => {
     it('should return some error', () => {
@@ -58,9 +58,9 @@ describe('UserLogin Reducer', () => {
       const state = reducer(initialState, action);
       expect(state.authenticated).toEqual(false);
       expect(state.loaded).toEqual(true);
-      expect(state.error).toEqual("Invalid email or password");
+      expect(state.error).toEqual('Invalid email or password');
     });
-  })
+  });
 
   describe('AUTHENTICATED_SUCCESS action', () => {
     it('should return user', () => {
@@ -70,7 +70,7 @@ describe('UserLogin Reducer', () => {
       expect(state.loaded).toEqual(true);
       expect(state.user).toEqual(user);
     });
-  })
+  });
 
   describe('AUTHENTICATE_SUCCESS action', () => {
     it('should return user', () => {
@@ -81,6 +81,6 @@ describe('UserLogin Reducer', () => {
       expect(state.loading).toEqual(false);
       expect(state.user).toEqual(user);
     });
-  })
+  });
 
 });

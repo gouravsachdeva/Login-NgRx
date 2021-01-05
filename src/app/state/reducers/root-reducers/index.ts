@@ -1,3 +1,4 @@
+import { routerReducer } from '@ngrx/router-store';
 import { createSelector, MetaReducer } from '@ngrx/store';
 import { environment } from '../../../../environments/environment';
 import * as fromUserLogin from '../user-login.reducer';
@@ -7,7 +8,8 @@ export interface State {
 }
 
 export const reducer = {
-  [fromUserLogin.userLoginFeatureKey]: fromUserLogin.reducer
+  [fromUserLogin.userLoginFeatureKey]: fromUserLogin.reducer,
+  router: routerReducer
 };
 
 export const getUsersState = (state: State) => state[fromUserLogin.userLoginFeatureKey];

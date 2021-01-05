@@ -1,5 +1,5 @@
 import { UserLoginActions, UserLoginActionTypes } from '../actions/user-login.actions';
-import { User } from '../../core/models/user'
+import { User } from '../../core/models/user';
 
 export const userLoginFeatureKey = 'userLogin';
 
@@ -56,7 +56,7 @@ export function reducer(state = initialState, action: UserLoginActions): State {
         authenticated: true,
         error: undefined,
         loading: false,
-        user: user
+        user
       });
 
     default:

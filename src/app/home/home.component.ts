@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from "@ngrx/store";
+import { Store } from '@ngrx/store';
 import * as RouterAction from '../shared/route-actions';
 
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 import {
   getAuthenticatedUser,
   State
-} from "../state/reducers/root-reducers";
+} from '../state/reducers/root-reducers';
 
 // models
-import { User } from "../core/models/user";
+import { User } from '../core/models/user';
 
 @Component({
   selector: 'app-home',

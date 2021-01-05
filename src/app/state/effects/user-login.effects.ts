@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action } from "@ngrx/store";
-import { Observable, of } from "rxjs";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
-import { tap, switchMap, catchError, map } from 'rxjs/operators'
-import { Router } from '@angular/router'
+import { Action } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import { tap, switchMap, catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
-import { UserService } from "../../core/services/user.service";
+import { UserService } from '../../core/services/user.service';
 
 import {
   UserLoginActionTypes,
@@ -17,14 +17,12 @@ import {
   AuthenticatedSuccessAction,
   AuthenticationErrorAction,
   AuthenticationSuccessAction
-} from "../actions/user-login.actions";
+} from '../actions/user-login.actions';
 
 
 @Injectable()
 export class UserLoginEffects {
-  constructor(private actions$: Actions,
-    private userService: UserService,
-    private router: Router) { }
+  constructor(private actions$: Actions, private userService: UserService, private router: Router) { }
 
   @Effect()
   public authenticate: Observable<Action> = this.actions$.pipe(
@@ -32,9 +30,9 @@ export class UserLoginEffects {
     // .debounceTime(500)
     switchMap((payload: any) => {
       return this.userService.authenticate(payload.payload.email, payload.payload.password).pipe(
-        map(user => new AuthenticationSuccessAction({ user: user })),
+        map(user => new AuthenticationSuccessAction({ user })),
         tap(() => this.router.navigate(['/home'])),
-        catchError(error => of(new AuthenticationErrorAction({ error: error }))))
+        catchError(error => of(new AuthenticationErrorAction({ error }))));
     }));
 
   // @Effect()

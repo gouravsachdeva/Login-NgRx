@@ -42,16 +42,16 @@ describe('AuthenticationSuccessAction', () => {
   });
 });
 
-describe("UserLogin actions", () => {
+describe('UserLogin actions', () => {
   it('shold create an action', () => {
-    const action = new UserLoginActions.AuthenticateAction({ email: "test@domain.com", password: "Test@123" });
-    expect(action.type).toEqual("[UserLogin] Authenticate");
+    const action = new UserLoginActions.AuthenticateAction({ email: 'test@domain.com', password: 'Test@123' });
+    expect(action.type).toEqual('[UserLogin] Authenticate');
   });
 });
 
-describe("UserLogin actions", () => {
+describe('UserLogin actions', () => {
   it('shold create an action', () => {
-    const action = new UserLoginActions.AuthenticatedSuccessAction({ authenticated: true, user: { email: "test@domain.com", password: "Test@123" } });
-    expect(action.type).toEqual("[UserLogin] Authenticated success");
+    const action = new UserLoginActions.AuthenticatedSuccessAction({ authenticated: true, user: { email: 'test@domain.com', password: 'Test@123' } });
+    expect(action.type).toEqual('[UserLogin] Authenticated success');
   });
 });
