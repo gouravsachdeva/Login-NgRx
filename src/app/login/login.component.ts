@@ -73,16 +73,16 @@ export class LoginComponent implements OnDestroy, OnInit {
     }
 
   }
-  onReset(): void {
-    this.loginForm.reset();
-  }
+  // onReset(): void {
+  //   this.loginForm.reset();
+  // }
 
   public ngOnDestroy() {
     this.alive = false;
   }
 
-  public home() {
-    this.store.dispatch(new RouterAction.Go({ path: "/" }));
-  }
+  // public home() {
+  //   this.store.dispatch(new RouterAction.Go({ path: "/" }));
+  // }
 
 }

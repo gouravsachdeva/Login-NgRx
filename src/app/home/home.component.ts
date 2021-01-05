@@ -24,7 +24,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.store.select(getAuthenticatedUser) || {};
   }
-  public signOut() {
-    this.store.dispatch(new RouterAction.Go({ path: "/" }));
-  }
 }
